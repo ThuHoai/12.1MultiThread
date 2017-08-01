@@ -2,9 +2,9 @@ package com.example.hoaiktt.a12multithread;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private class ClickFlipperCoin implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
-            ExecutorService taskList = Executors.newFixedThreadPool(100);
+            ExecutorService taskList = Executors.newFixedThreadPool(10);
             for(int i=0;i<5;i++){
-                String threadName = Thread.currentThread().getName();
-                taskList.execute(new Flipper());
+                taskList.execute(new Flipper(1000));
             }
         }
     }
