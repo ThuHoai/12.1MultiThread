@@ -1,5 +1,7 @@
 package com.example.hoaiktt.a12multithread;
 
+import android.util.Log;
+
 import java.util.Random;
 import java.util.regex.Matcher;
 
@@ -9,22 +11,22 @@ import java.util.regex.Matcher;
 
 public class Flipper implements Runnable{
     private static final int COIN = 1000;
-    private final int mLoopLimit = 5;
-
     @Override
     public void run() {
+        int x =0;
         for(int i = 0;i<COIN; i++){
-            int x =0;
            int k = randomInt(2);
-            if(k==0){
+            if(k==1){
                 x++;
                 if(x>=3){
-                    for(int j=i-x;j<mLoopLimit;j++){
-
+                    for(int j=i-x+1;j<=i;j++){
+                        String name = Thread.currentThread().getName();
+                        Log.e("Flipper",name + String.valueOf(j));
                     }
+                    x=0;
                 }
 
-            }else if(k==1){
+            }else if(k==0){
                 x =0;
             }
         }
